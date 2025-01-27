@@ -1,0 +1,203 @@
+[
+  {
+    "v": 6,
+    "name": "rapidapi.com",
+    "folders": [
+      {
+        "v": 6,
+        "name": "API Ninjas - Recipes",
+        "folders": [],
+        "requests": [
+          {
+            "v": "11",
+            "endpoint": "https://recipe-by-api-ninjas.p.rapidapi.com/v1/recipe?query=spaghetti&offset=0",
+            "name": "Query Recipes Paginated",
+            "params": [],
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-host",
+                "value": "recipe-by-api-ninjas.p.rapidapi.com",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-key",
+                "value": "ec667e9d6emshfb4bade0c64761cp19e3eejsn8016560b0d1b",
+                "active": true,
+                "description": ""
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "authType": "inherit",
+              "authActive": true
+            },
+            "preRequestScript": "",
+            "testScript": "",
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {}
+          }
+        ],
+        "headers": [],
+        "auth": {
+          "authType": "none",
+          "authActive": true
+        },
+        "_ref_id": "coll_m6el8ck5_4c01e283-e15c-4b6c-8cb4-2cd483d9f472"
+      },
+      {
+        "v": 6,
+        "name": "Tasty API - Recipes",
+        "folders": [],
+        "requests": [
+          {
+            "v": "11",
+            "name": "Query Recipes",
+            "method": "GET",
+            "endpoint": "https://tasty.p.rapidapi.com/recipes/list?q=lasagna",
+            "params": [],
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-host",
+                "value": "tasty.p.rapidapi.com",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-key",
+                "value": "ec667e9d6emshfb4bade0c64761cp19e3eejsn8016560b0d1b",
+                "active": true,
+                "description": ""
+              }
+            ],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "none",
+              "username": "stl-bourbon",
+              "password": "bourbon",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {}
+          },
+          {
+            "v": "11",
+            "name": "Get Recipe By Id",
+            "method": "GET",
+            "endpoint": "https://tasty.p.rapidapi.com/recipes/get-more-info?id=1180",
+            "params": [],
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-host",
+                "value": "tasty.p.rapidapi.com",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-key",
+                "value": "ec667e9d6emshfb4bade0c64761cp19e3eejsn8016560b0d1b",
+                "active": true,
+                "description": ""
+              }
+            ],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "none",
+              "username": "stl-bourbon",
+              "password": "bourbon",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {}
+          },
+          {
+            "v": "11",
+            "name": "Get Similar Recipes by Id",
+            "method": "GET",
+            "endpoint": "https://tasty.p.rapidapi.com/recipes/list-similarities?recipe_id=1180",
+            "params": [],
+            "headers": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-host",
+                "value": "tasty.p.rapidapi.com",
+                "active": true,
+                "description": ""
+              },
+              {
+                "key": "x-rapidapi-key",
+                "value": "ec667e9d6emshfb4bade0c64761cp19e3eejsn8016560b0d1b",
+                "active": true,
+                "description": ""
+              }
+            ],
+            "preRequestScript": "",
+            "testScript": "",
+            "auth": {
+              "authType": "none",
+              "username": "stl-bourbon",
+              "password": "bourbon",
+              "authActive": true
+            },
+            "body": {
+              "contentType": null,
+              "body": null
+            },
+            "requestVariables": [],
+            "responses": {}
+          }
+        ],
+        "headers": [],
+        "auth": {
+          "authType": "none",
+          "authActive": true
+        },
+        "_ref_id": "coll_m6ekidq9_f0e8386b-e314-4de1-8155-43fa7b64951b"
+      }
+    ],
+    "requests": [],
+    "headers": [],
+    "auth": {
+      "authType": "none",
+      "authActive": true
+    },
+    "_ref_id": "coll_m6elczvj_9136bcc3-ccfa-4a6b-9cee-5a4c908a44a2"
+  }
+]

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FcCollapse, FcExpand } from "react-icons/fc";
+import Rating from "./Rating.jsx";
 
 /* eslint react/prop-types: 0 */
 const RecipeCard = (props) => {
@@ -9,7 +10,7 @@ const RecipeCard = (props) => {
     const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
 
     return (
-        <article className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] transform transition duration-500 hover:scale-102">
+        <article id={key} className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] transform transition duration-500 hover:scale-102">
             <div className='flex-grow'>
                 <img
                     className="w-full h-48 object-cover
@@ -23,7 +24,7 @@ const RecipeCard = (props) => {
                     {recipe.description.length > 0 && (
                         <p>{recipe.description}</p>
                     )}
-                    <div className="bg-[#fff5fa] rounded-lg p-2 flex flex-col gap-y-3">
+                    <div className="bg-[#f5fff9] rounded-lg p-2 flex flex-col gap-y-3">
                         <h3 className="text-md font-semibold text-[#7b284f]">
                             Preparation time: {recipe.preparationTimeInMinutes} minutes
                         </h3>
@@ -39,7 +40,7 @@ const RecipeCard = (props) => {
                         )}
                     </div>
                     {isIngredientsOpen && (
-                        <ul className="marker:text-[#854632] list-disc flex flex-col gap-y-3 px-6">
+                        <ul className="bg-[#fffef5] rounded-lg p-2 marker:text-[#854632] list-disc flex flex-col gap-y-3 px-6">
                             {recipe.ingredientLines.map((ingredient, index) => (
                                 <li key={index} className="pl-4">{ingredient}</li>
                             ))}
@@ -69,6 +70,7 @@ const RecipeCard = (props) => {
                     </section>
                 )}
             </div>
+            <Rating defaultRating={recipe.rating} />
             {recipe.labels.length > 0 && (
                 <div className="flex justify-start p-2">
                     {recipe.labels.map((label, index) => (
