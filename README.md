@@ -1,4 +1,12 @@
-# React + Vite
+# Family Dinner Planner
+
+An application to help plan family dinners, keep track of recipes, and generate shopping lists.
+
+![img.png](docs/v1.png)
+
+## Tech Stack
+
+### React + Vite + Tailwind CSS
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
