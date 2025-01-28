@@ -23,7 +23,6 @@ const Rating = (props) => {
     return (
         <div>
             <div className="flex justify-center w-full rating" style={{ fontSize: '1.3em'}}>
-
                 { stars.map(star => {
                     return (
                         // eslint-disable-next-line react/jsx-key
@@ -35,10 +34,9 @@ const Rating = (props) => {
                                     ? hovered < star ? deselectedIcon : selectedIcon
                                     : selectedIcon
                                 }
-                            </span>
+                        </span>
                     );
                 })}
-
             </div>
         </div>
     );

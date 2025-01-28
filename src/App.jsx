@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RecipeBook from "./components/RecipeBook.jsx";
 import Search from "./components/Search.jsx";
+import MealPlan from "./components/MealPlan.jsx";
 
 const App = () => {
     const defaultImage = 'https://thumbs.dreamstime.com/b/empty-plate-left-dinner-view-above-33349397.jpg';
@@ -50,6 +51,7 @@ const App = () => {
                 <h1 className='text-4xl text-[#5f574e] font-[Mouse_Memoirs] pb-4'>Family Dinner Planner</h1>
             </div>
             <Search query={searchQuery} handleSearchRecipe={setSearchQuery} handleClearSearch={clearSearch} />
+            <MealPlan />
             <RecipeBook
                 handleAddLabelToSearch={addLabelToSearch}
                 recipes={applySearchQuery(recipes)}
