@@ -4,13 +4,13 @@ import Rating from "./Rating.jsx";
 
 /* eslint react/prop-types: 0 */
 const RecipeCard = (props) => {
-    const { key, recipe, addLabelToSearch } = props;
+    const { recipe, addLabelToSearch } = props;
 
     const [isIngredientsOpen, setIsIngredientsOpen] = useState(false);
     const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
 
     return (
-        <article id={key} className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] transform transition duration-500 hover:scale-102">
+        <article id={recipe.id} className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] transform transition duration-500 hover:scale-102">
             <div className='flex-grow'>
                 <img
                     className="w-full h-48 object-cover

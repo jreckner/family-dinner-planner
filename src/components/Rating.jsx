@@ -25,8 +25,7 @@ const Rating = (props) => {
             <div className="flex justify-center w-full rating" style={{ fontSize: '1.3em'}}>
                 { stars.map(star => {
                     return (
-                        // eslint-disable-next-line react/jsx-key
-                        <span style={{ cursor: 'pointer' }}
+                        <span key={star} style={{ cursor: 'pointer' }}
                             onClick={() => { changeRating(star); }}
                             onMouseEnter={() => { hoverRating(star); }}
                             onMouseLeave={() => { hoverRating(0); }}>

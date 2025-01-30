@@ -4,8 +4,8 @@ import RecipeCard from "./RecipeCard.jsx";
 const RecipeBook = ({ handleAddLabelToSearch, recipes }) => {
     return (
         <div className='recipes-list'>
-            { recipes.map((recipe, index) => (
-                <RecipeCard key={index} recipe={recipe} addLabelToSearch={handleAddLabelToSearch}/>
+            {recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe} addLabelToSearch={handleAddLabelToSearch}/>
             ))}
         </div>
     );
