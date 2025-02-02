@@ -1,26 +1,37 @@
 import { useState } from "react";
 import { FcCollapse, FcExpand } from "react-icons/fc";
+import { GiHotMeal } from "react-icons/gi";
+import { RiDeleteBin2Line } from "react-icons/ri";
 import Rating from "./Rating.jsx";
+
 
 /* eslint react/prop-types: 0 */
 const RecipeCard = (props) => {
-    const { recipe, addLabelToSearch } = props;
+    const { recipe, addLabelToSearch, addMealToPlan, deleteRecipe } = props;
 
     const [isIngredientsOpen, setIsIngredientsOpen] = useState(false);
     const [isInstructionsOpen, setIsInstructionsOpen] = useState(false);
 
     return (
-        <article id={recipe.id} className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] transform transition duration-500 hover:scale-102">
+        <article id={recipe.id} className="flex flex-col bg-white shadow-2xl rounded-lg text-[#5f574e] hover:scale-102">
             <div className='flex-grow'>
-                <img
-                    className="w-full h-48 object-cover
-                               object-center rounded-t-lg"
-                    src={recipe.image}
-                    alt={recipe.title}
-                />
+                <div className="relative">
+                    <img
+                        className="w-full h-48 object-cover object-center rounded-t-lg"
+                        src={recipe.image}
+                        alt={recipe.title}
+                    />
+                    <RiDeleteBin2Line
+                        // TODO: Make Admin only
+                        className="absolute top-2 right-2 fill-red-700 cursor-pointer text-white rounded-full p-1"
+                        onClick={() => deleteRecipe(recipe.id)}
+                        size='2.0em' />
+                </div>
                 <section className="flex flex-col gap-4 p-4 md:p-2 md:py-1">
-
-                    <h1 className="text-3xl font-[Mouse_Memoirs]">{recipe.title}</h1>
+                    <div className="flex justify-between items-center">
+                        <h1 className="text-3xl font-[Mouse_Memoirs]">{recipe.title}</h1>
+                        <GiHotMeal className="fill-orange-700 cursor-pointer " onClick={() => addMealToPlan(recipe)} size="1.3em" />
+                    </div>
                     {recipe.description.length > 0 && (
                         <p>{recipe.description}</p>
                     )}
@@ -70,7 +81,7 @@ const RecipeCard = (props) => {
                     </section>
                 )}
             </div>
-            <Rating defaultRating={recipe.rating} />
+            <Rating defaultRating={recipe.rating}/>
             {recipe.labels.length > 0 && (
                 <div className="flex justify-start p-2">
                     {recipe.labels.map((label, index) => (
