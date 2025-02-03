@@ -4,7 +4,7 @@ import { RiDeleteBin2Line } from "react-icons/ri";
 /* eslint react/prop-types: 0 */
 const Search = ({query, handleSearchRecipe, handleClearSearch}) => {
     return (
-        <div className="pb-4">
+        <div className="pb-1">
             <div className="relative">
                 <input type="text"
                     value={query}

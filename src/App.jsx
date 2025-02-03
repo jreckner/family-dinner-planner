@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import SlidingPane from "react-sliding-pane";
+import "react-sliding-pane/dist/react-sliding-pane.css";
+
 import RecipeBook from "./components/RecipeBook.jsx";
 import Search from "./components/Search.jsx";
 import AddRecipe from "./components/AddRecipe.jsx";
+import MealPlan from "./components/MealPlan.jsx";
 
 import { nanoid } from 'nanoid';
-import { FaPlus } from 'react-icons/fa';
-import { HiOutlineChevronDoubleLeft, HiOutlineChevronDoubleRight } from "react-icons/hi";
-import MealPlan from "./components/MealPlan.jsx";
+import { FaPlus, FaShoppingCart } from 'react-icons/fa';
+import { FaAngleDoubleRight } from "react-icons/fa";
 
 const App = () => {
     const defaultImage = 'https://thumbs.dreamstime.com/b/empty-plate-left-dinner-view-above-33349397.jpg';
@@ -15,6 +18,14 @@ const App = () => {
     const [showModal, setShowModal] = useState(false);
     const [mealPlan, setMealPlan] = useState([]);
     const [showMealPlan, setShowMealPlan] = useState(false);
+    const [availableLabels, setAvailableLabels] = useState([]);
+
+    useEffect(() => {
+        const labels = recipes.reduce((acc, recipe) => {
+            return [...acc, ...recipe.labels];
+        }, []);
+        setAvailableLabels([...new Set(labels)].sort());
+    }, [recipes, availableLabels]);
 
     useEffect(() => {
         const recipesFromLocalStorage = JSON.parse(localStorage.getItem('family-dinner-planner-data'));
@@ -67,6 +78,21 @@ const App = () => {
         }, recipes);
     }
 
+    const getCurrentMealPlanDates = () => {
+        const today = new Date();
+        const dayOfWeek = today.getDay();
+        const monday = new Date(today);
+        monday.setDate(today.getDate() - dayOfWeek + 1);
+        const sunday = new Date(monday);
+        sunday.setDate(monday.getDate() + 6);
+
+        const options = { month: 'numeric', day: 'numeric' };
+        const mondayStr = monday.toLocaleDateString(undefined, options);
+        const sundayStr = sunday.toLocaleDateString(undefined, options);
+
+        return `Monday ${mondayStr} - Sunday ${sundayStr}`;
+    };
+
     return (
         <div className="flex justify-between">
             <div className='flex-grow px-8'>
@@ -75,16 +101,38 @@ const App = () => {
                         <img src="/dinner.jpg" alt="Family Dinner Planner" className="rounded size-12"/>
                         <h1 className='text-4xl text-[#5f574e] font-[Mouse_Memoirs] pb-4'>Family Dinner Planner</h1>
                     </div>
-                    <button
-                        className="h-8 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
-                        onClick={() => setShowModal(true)}>
-                        <FaPlus/>
-                    </button>
+                    <div className="flex gap-1">
+                        <button
+                            className="h-8 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
+                            onClick={() => setShowModal(true)}>
+                            <FaPlus/>
+                        </button>
+                        <button
+                            className="h-8 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md"
+                            onClick={() => setShowMealPlan(true)}>
+                            <FaShoppingCart />
+                        </button>
+                    </div>
                 </div>
                 <Search query={searchQuery} handleSearchRecipe={setSearchQuery} handleClearSearch={clearSearch}/>
+                {availableLabels.length > 0 && (
+                    <div className="flex justify-start pb-2">
+                        {availableLabels.map((label, index) => (
+                            <span key={index}
+                                  onClick={() => addLabelToSearch(label)}
+                                  className="cursor-pointer bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">{label}</span>
+                        ))}
+                    </div>
+                )}
                 <RecipeBook
                     handleAddLabelToSearch={addLabelToSearch}
                     recipes={applySearchQuery(recipes)}
+                    handleUpdateRating={(id, rating) => {
+                        const updatedRecipes = recipes.map((recipe) =>
+                            recipe.id === id ? { ...recipe, rating } : recipe
+                        );
+                        setRecipes(updatedRecipes);
+                    }}
                     handleMealPlan={(recipe) => {
                         if (mealPlan.length < 5) {
                             setMealPlan([...mealPlan, recipe]);
@@ -105,18 +153,18 @@ const App = () => {
                            }/>
 
             </div>
-            {showMealPlan && (
-                <div>
-                    <HiOutlineChevronDoubleRight className="cursor-pointer" onClick={() => setShowMealPlan(false)} />
-                    <MealPlan meals={mealPlan}
-                              removeMealFromPlan={(id) => setMealPlan(mealPlan.filter((meal) => meal.id !== id))
-                    }/>
-                </div>
-            )}
-
-            {!showMealPlan && (
-                <HiOutlineChevronDoubleLeft className="cursor-pointer" onClick={() => setShowMealPlan(true)}/>
-            )}
+            <SlidingPane
+                closeIcon={<FaAngleDoubleRight />}
+                title="Meal Plan"
+                subtitle={getCurrentMealPlanDates()}
+                from="right"
+                isOpen={showMealPlan}
+                width="460px"
+                onRequestClose={() => setShowMealPlan(false)}
+            >
+                <MealPlan meals={mealPlan}
+                          removeMealFromPlan={(id) => setMealPlan(mealPlan.filter((meal) => meal.id !== id))}/>
+            </SlidingPane>
         </div>
 
     );

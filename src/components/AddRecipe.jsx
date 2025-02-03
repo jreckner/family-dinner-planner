@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { FaPlus } from 'react-icons/fa';
 import { IoIosRemoveCircle } from "react-icons/io";
 import RecipeCard from "./RecipeCard.jsx";
 
 /* eslint react/prop-types: 0 */
-const AddRecipe = ({ isOpen, handleAddRecipe, handleCancelRecipe }) => {
+const AddRecipe = ({ isOpen, recipe, handleAddRecipe, handleCancelRecipe }) => {
     const defaultImage = 'https://thumbs.dreamstime.com/b/empty-plate-left-dinner-view-above-33349397.jpg';
 
     const [title, setTitle] = useState('');
@@ -17,6 +17,17 @@ const AddRecipe = ({ isOpen, handleAddRecipe, handleCancelRecipe }) => {
     const [ingredients, setIngredients] = useState([]);
     const [preview, setPreview] = useState(null);
 
+    useEffect(() => {
+        if (recipe) {
+            setTitle(recipe.title);
+            setDescription(recipe.description);
+            setImage(recipe.image);
+            setPreparationTimeInMinutes(recipe.preparationTimeInMinutes);
+            setLabels(recipe.labels.join(', '));
+            setIngredients(recipe.ingredientLines);
+        }
+    }, [recipe]);
+    
     if (!isOpen) return null;
 
     const handleInputChange = (event) => {

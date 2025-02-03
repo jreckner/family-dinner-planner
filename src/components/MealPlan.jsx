@@ -17,7 +17,7 @@ const MealPlan = (props) => {
     }, [groceryList, meals]);
 
     return (
-        <div className="flex flex-col justify-between p-4 gap-2 transform transition duration-500">
+        <div className="flex flex-col justify-center gap-2 transform transition duration-500">
             {meals.map((meal, index) => (
                 <article
                     key={index}
@@ -34,14 +34,14 @@ const MealPlan = (props) => {
                     key={index}
                     className="relative flex bg-[lightgrey] inset-shadow-sm inset-shadow-zinc-400 rounded-lg text-[#5f574e] justify-center items-center w-100 h-20">
                     <h1 className='text-3xl font-[Mouse_Memoirs] text-[grey]'>
-                        Meal #{index + 1}
+                        Meal #{meals.length + index + 1}
                     </h1>
                 </article>
             ))}
             {groceryList.length > 0 && (
-                <div className="text-[#5f574e]">
+                <div className="mt-4 text-[#5f574e]">
                     <div className="flex items-center gap-4">
-                        <FaShoppingCart />
+                        <FaShoppingCart/>
                         <h2 className="text-2xl font-[Mouse_Memoirs]">Grocery List</h2>
                     </div>
                     <ul className="bg-[#fffef5] rounded-lg p-2 marker:text-[#854632] list-disc flex flex-col gap-y-3 px-6">
