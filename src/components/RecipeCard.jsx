@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tooltip } from 'react-tailwind-tooltip';
 
 import Rating from "./Rating.jsx";
+import RoleRequired from "../RoleRequired.js";
 
 import { FcCollapse, FcExpand } from "react-icons/fc";
 import { FaClipboardList, FaUtensils } from "react-icons/fa";
@@ -31,17 +32,18 @@ const RecipeCard = (props) => {
                         alt={recipe.title}
                     />
                     <div className="absolute top-2 right-2">
-                        {/* TODO: Make Admin only */}
-                        <div className="flex gap-1">
-                            <MdModeEdit
-                                className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
-                                onClick={() => console.log(recipe.id)}
-                                size='2.0em' />
-                            <RiDeleteBin2Line
-                                className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
-                                onClick={() => deleteRecipe(recipe.id)}
-                                size='2.0em' />
-                        </div>
+                        <RoleRequired requiredRoles={["admin"]}>
+                            <div className="flex gap-1">
+                                <MdModeEdit
+                                    className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
+                                    onClick={() => console.log(recipe.id)}
+                                    size='2.0em' />
+                                <RiDeleteBin2Line
+                                    className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
+                                    onClick={() => deleteRecipe(recipe.id)}
+                                    size='2.0em' />
+                            </div>
+                        </RoleRequired>
                     </div>
                 </div>
                 <section className="flex flex-col gap-2 p-4 md:p-2 md:py-1">
