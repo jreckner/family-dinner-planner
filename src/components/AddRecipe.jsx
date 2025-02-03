@@ -100,7 +100,7 @@ const AddRecipe = ({ isOpen, recipe, handleAddRecipe, handleCancelRecipe }) => {
         <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex items-center justify-center min-h-screen">
                 <div className='flex p-2'>
-                    <div className="bg-white rounded-lg shadow-lg p-8 w-155">
+                    <div className="bg-white rounded-lg shadow-lg p-8 w-115 md:w-165">
                         <form onSubmit={handleSubmit} className='bg-white p-6 rounded-lg shadow-md'>
                             <div className='mb-4'>
                                 <label className='block text-gray-700 text-sm font-bold mb-2'>Title:</label>
@@ -140,7 +140,8 @@ const AddRecipe = ({ isOpen, recipe, handleAddRecipe, handleCancelRecipe }) => {
                                         onChange={handleInputChange}
                                         placeholder="1 cup of sugar"
                                         className='shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'/>
-                                    <button onClick={addIngredient}
+                                    <button type="button"
+                                            onClick={addIngredient}
                                             className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>
                                         <FaPlus/>
                                     </button>
