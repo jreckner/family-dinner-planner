@@ -8,7 +8,7 @@ const Rating = (props) => {
     const [hovered, setHovered] = useState(0);
 
     const stars = [1,2,3,4,5];
-    const selectedIcon = "💙";
+    const selectedIcon = "❤️";
     const deselectedIcon = "🖤";
 
     const changeRating = (newRating) => {
@@ -22,7 +22,7 @@ const Rating = (props) => {
 
     return (
         <div>
-            <div className="flex justify-center w-full rating" style={{ fontSize: '1.3em'}}>
+            <div className="flex justify-center w-full rating p-1" style={{ fontSize: '1.2em'}}>
                 { stars.map(star => {
                     return (
                         <span key={star} style={{ cursor: 'pointer' }}

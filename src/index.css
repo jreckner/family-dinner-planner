@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Mouse+Memoirs&display=swap');
 @import "tailwindcss";
 
+@layer base {
+  .font-outline {
+    -webkit-text-stroke: 0.01em black;
+  }
+}
+
 .recipe-card {
 }
 

@@ -6,6 +6,7 @@ import Rating from "./Rating.jsx";
 import { FcCollapse, FcExpand } from "react-icons/fc";
 import { FaClipboardList, FaUtensils } from "react-icons/fa";
 import { GiHotMeal } from "react-icons/gi";
+import { MdModeEdit } from "react-icons/md";
 import { PiTimerBold } from "react-icons/pi";
 import { RiDeleteBin2Line } from "react-icons/ri";
 
@@ -21,7 +22,7 @@ const RecipeCard = (props) => {
     }
 
     return (
-        <article id={recipe.id} className="flex flex-col bg-[#FAF9F6] shadow-2xl rounded-lg text-[#5f574e] hover:scale-102">
+        <article id={recipe.id} className="flex flex-col bg-[#FAF9F6] max-w-108 shadow-2xl rounded-lg text-[#5f574e] hover:scale-102">
             <div className='flex-grow'>
                 <div className="relative">
                     <img
@@ -29,11 +30,19 @@ const RecipeCard = (props) => {
                         src={recipe.image}
                         alt={recipe.title}
                     />
-                    <RiDeleteBin2Line
-                        // TODO: Make Admin only
-                        className="absolute top-2 right-2 fill-red-700 cursor-pointer text-white rounded-full p-1"
-                        onClick={() => deleteRecipe(recipe.id)}
-                        size='2.0em' />
+                    <div className="absolute top-2 right-2">
+                        {/* TODO: Make Admin only */}
+                        <div className="flex gap-1">
+                            <MdModeEdit
+                                className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
+                                onClick={() => console.log(recipe.id)}
+                                size='2.0em' />
+                            <RiDeleteBin2Line
+                                className="fill-red-700 bg-white cursor-pointer text-white rounded-full p-1"
+                                onClick={() => deleteRecipe(recipe.id)}
+                                size='2.0em' />
+                        </div>
+                    </div>
                 </div>
                 <section className="flex flex-col gap-2 p-4 md:p-2 md:py-1">
                     <div className="flex justify-between items-center">
@@ -56,7 +65,7 @@ const RecipeCard = (props) => {
                             )}
                         </div>
                         <div className="flex items-center gap-1">
-                            <PiTimerBold size="1.3em"/> {recipe.preparationTimeInMinutes} minutes
+                            <PiTimerBold size="1.4em"/><p className="text-xl text-[#5f574e] font-[Mouse_Memoirs]">{recipe.preparationTimeInMinutes} minutes</p>
                         </div>
                     </div>
                     <div className="flex justify-end items-center gap-1">
