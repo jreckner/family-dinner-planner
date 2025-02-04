@@ -48,26 +48,26 @@ const RecipeCard = (props) => {
                 </div>
                 <section className="flex flex-col gap-2 p-4 md:p-2 md:py-1">
                     <div className="flex justify-between items-center">
-                        <h1 className="text-3xl font-[Mouse_Memoirs]">{recipe.title}</h1>
-                        <Tooltip title="Add Meal to Plan" placement="left" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-[Mouse_Memoirs]" arrow>
+                        <h1 className="text-3xl font-primary">{recipe.title}</h1>
+                        <Tooltip title="Add Meal to Plan" placement="left" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-primary" arrow>
                             <GiHotMeal className="fill-orange-700 cursor-pointer " onClick={() => addMealToPlan(recipe)} size="1.3em" />
                         </Tooltip>
                     </div>
                     <div className="flex justify-between items-center gap-1">
                         <div className="flex items-center gap-1">
                             {recipe.ingredientLines.length > 0 && (
-                                <Tooltip title="Show Ingredients" placement="right" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-[Mouse_Memoirs]" arrow>
+                                <Tooltip title="Show Ingredients" placement="right" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-primary" arrow>
                                     <FaUtensils className="cursor-pointer" onClick={() => setIsIngredientsOpen(!isIngredientsOpen)} />
                                 </Tooltip>
                             )}
                             {recipe.instructions.length > 0 && (
-                                <Tooltip title="Show Instructions" placement="right" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-[Mouse_Memoirs]" arrow>
+                                <Tooltip title="Show Instructions" placement="right" arrowStyle="bg-[#5f574e]" tooltipStyle="bg-[#5f574e] text-white font-primary" arrow>
                                     <FaClipboardList className="cursor-pointer" onClick={() => setIsInstructionsOpen(!isInstructionsOpen)}/>
                                 </Tooltip>
                             )}
                         </div>
                         <div className="flex items-center gap-1">
-                            <PiTimerBold size="1.4em"/><p className="text-xl text-[#5f574e] font-[Mouse_Memoirs]">{recipe.preparationTimeInMinutes} minutes</p>
+                            <PiTimerBold size="1.4em"/><p className="text-xl text-[#5f574e] font-primary">{recipe.preparationTimeInMinutes} minutes</p>
                         </div>
                     </div>
                     <div className="flex justify-end items-center gap-1">
@@ -80,7 +80,7 @@ const RecipeCard = (props) => {
                 { isIngredientsOpen && (
                 <section className="flex flex-col gap-4 p-4 md:p-2 md:py-1">
                     <div className="flex justify-between">
-                        <h2 className="text-2xl font-[Mouse_Memoirs]">Ingredients</h2>
+                        <h2 className="text-2xl font-primary">Ingredients</h2>
                         {(isIngredientsOpen
                                 ? <FcCollapse onClick={() => setIsIngredientsOpen(!isIngredientsOpen)} size='1.3em'/>
                                 : <FcExpand onClick={() => setIsIngredientsOpen(!isIngredientsOpen)} size='1.3em'/>
@@ -100,7 +100,7 @@ const RecipeCard = (props) => {
                     <section className="flex flex-col gap-4 p-2 md:p-2 md:py-1">
                         <hr className="pb-4"/>
                         <div className="flex content-center justify-between">
-                            <h2 className="text-2xl font-[Mouse_Memoirs]">Instructions</h2>
+                            <h2 className="text-2xl font-primary">Instructions</h2>
                             {(isInstructionsOpen
                                     ? <FcCollapse onClick={() => setIsInstructionsOpen(!isInstructionsOpen)}
                                                   size='1.3em'/>
@@ -120,7 +120,7 @@ const RecipeCard = (props) => {
             </div>
             <div className="flex justify-between">
                 <div className="flex justify-start p-2">
-                    {recipe.labels.map((label, index) => (
+                    {recipe.labels.sort().map((label, index) => (
                         <span key={index}
                               onClick={() => addLabelToSearch(label)}
                               className="cursor-pointer bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded-sm dark:bg-gray-700 dark:text-green-400 border border-green-400">{label}</span>

@@ -129,7 +129,7 @@ const Landing = () => {
                 <div className='flex justify-between items-center'>
                     <div className='pt-2 pb-4 gap-2 flex justify-start items-center'>
                         <img src="/dinner.jpg" alt="Family Dinner Planner" className="rounded size-12"/>
-                        <h1 className='text-4xl text-[#5f574e] font-[Mouse_Memoirs] pb-4'>Family Dinner Planner</h1>
+                        <h1 className='text-4xl text-[#5f574e] font-primary pb-4'>Family Dinner Planner</h1>
                     </div>
                     <div className="flex items-center gap-1">
                         {!user && (<GoogleLogin size="large" text="continue_with" shape="pill" onSuccess={login} useOneTap auto_select />)}

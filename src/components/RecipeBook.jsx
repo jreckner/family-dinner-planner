@@ -3,7 +3,7 @@ import RecipeCard from "./RecipeCard.jsx";
 /* eslint react/prop-types: 0 */
 const RecipeBook = ({ handleAddLabelToSearch, recipes, handleUpdateRating, handleMealPlan, handleDeleteRecipe }) => {
     return (
-        <div className='recipes-list'>
+        <div className='grid grid-cols-[repeat(auto-fit,minmax(385px,1fr))] gap-[1em]'>
             {recipes.map((recipe) => (
                 <RecipeCard key={recipe.id}
                             recipe={recipe}

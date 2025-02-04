@@ -31,7 +31,7 @@ const MealPlan = (props) => {
                             src={meal.image}
                             alt={meal.title}
                         />
-                        <p className="absolute inset-0 flex items-center justify-center text-5xl font-[Mouse_Memoirs] text-white font-bold font-outline">
+                        <p className="absolute inset-0 flex items-center justify-center text-5xl font-primary text-white font-bold font-outline">
                             {meal.title}
                         </p>
                     </div>
@@ -48,7 +48,7 @@ const MealPlan = (props) => {
                             alt="Choose a meal"
                         />
                         {/*
-                        <p className="absolute inset-0 flex items-center justify-center text-5xl font-[Mouse_Memoirs] text-white font-bold font-outline">
+                        <p className="absolute inset-0 flex items-center justify-center text-5xl font-primary text-white font-bold font-outline">
                             Choose Meal #{meals.length + index + 1} ...
                         </p>
                         */}
@@ -59,7 +59,7 @@ const MealPlan = (props) => {
                 <div className="bg-[#fffef5] w-100 mt-4 text-[#5f574e] shadow-lg p-2 border border-[#5f574e]/5">
                     <div className="flex items-center gap-4">
                         <FaShoppingCart/>
-                        <h2 className="text-2xl font-[Mouse_Memoirs]">Grocery List</h2>
+                        <h2 className="text-2xl font-primary">Grocery List</h2>
                     </div>
                     <ul className="bg-[#fffef5] p-2 marker:text-[#854632] list-disc flex flex-col gap-y-3 px-6">
                         {groceryList.map((ingredient, index) => (
