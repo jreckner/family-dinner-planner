@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Tooltip } from 'react-tailwind-tooltip';
 
 import Rating from "./Rating.jsx";
-import RoleRequired from "../RoleRequired.js";
+import RoleRequired from "./RoleRequired.js";
 
 import { FcCollapse, FcExpand } from "react-icons/fc";
 import { FaClipboardList, FaUtensils } from "react-icons/fa";

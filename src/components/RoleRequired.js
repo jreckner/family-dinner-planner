@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import { useAuth } from "./AuthProvider.jsx";
+import { useAuth } from "../providers/AuthProvider.jsx";
 
 const RoleRequired = ({ requiredRoles, children }) => {
     const { roles } = useAuth();

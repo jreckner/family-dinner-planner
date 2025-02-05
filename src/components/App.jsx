@@ -4,17 +4,17 @@ import { GoogleLogin } from '@react-oauth/google';
 import SlidingPane from "react-sliding-pane";
 import "react-sliding-pane/dist/react-sliding-pane.css";
 
-import RecipeBook from "./components/RecipeBook.jsx";
-import Search from "./components/Search.jsx";
-import AddRecipe from "./components/AddRecipe.jsx";
-import MealPlan from "./components/MealPlan.jsx";
+import RecipeBook from "./RecipeBook.jsx";
+import Search from "./Search.jsx";
+import AddRecipe from "./AddRecipe.jsx";
+import MealPlan from "./MealPlan.jsx";
 
 import { nanoid } from 'nanoid';
 import { FaAngleDoubleRight, FaDownload, FaPlus, FaShoppingCart } from 'react-icons/fa';
-import {useAuth} from "./AuthProvider.jsx";
+import {useAuth} from "../providers/AuthProvider.jsx";
 import RoleRequired from "./RoleRequired.js";
 
-const Landing = () => {
+const App = () => {
     const defaultImage = 'https://thumbs.dreamstime.com/b/empty-plate-left-dinner-view-above-33349397.jpg';
     const [searchQuery, setSearchQuery] = useState('');
     const [recipes, setRecipes] = useState([]);
@@ -208,4 +208,4 @@ const Landing = () => {
     );
 }
 
-export default Landing;
+export default App;
