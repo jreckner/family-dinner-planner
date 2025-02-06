@@ -7,42 +7,26 @@ import MealPlan from "./MealPlan.jsx";
 import { nanoid } from 'nanoid';
 import Header from "./header/Header.jsx";
 import Search from "./Search.jsx";
-import useRecipes from "../hooks/UseLocalStorage.js";
 import Labels from "./Labels.jsx";
 
+import {useRecipesContext} from "../providers/RecipesProvider.jsx";
+
 const App = () => {
-    const [ recipes, setRecipes ] = useRecipes();
-
-    const [showModal, setShowModal] = useState(false);
+    const { recipes, setRecipes } = useRecipesContext();
     const [mealPlan, setMealPlan] = useState([]);
-    const [showMealPlan, setShowMealPlan] = useState(false);
-
     const [availableLabels, setAvailableLabels] = useState([]);
-    const [selectedLabels, setSelectedLabels] = useState([]);
-
     const [searchQuery, setSearchQuery] = useState('');
+
+    const [showAddRecipeModal, setShowAddRecipeModal] = useState(false);
+    const [showMealPlan, setShowMealPlan] = useState(false);
 
     useEffect(() => {
         setAvailableLabels([...new Set(recipes.map((recipe => recipe.labels)).flat())]);
     }, [recipes]);
 
-    const handleOnSearchChange = (searchQuery) => {
-        setSearchQuery(searchQuery);
-    }
-
-    const filterRecipesBySearchQuery = () => {
-        const searchQueryItems = [...searchQuery.trim().split(' '), ...selectedLabels];
-        return searchQueryItems.reduce((filteredRecipes, searchQueryItem) => {
-            return filteredRecipes
-                .filter((recipe) =>
-                    recipe.title.toLowerCase().includes(searchQueryItem.toLowerCase())
-                    || recipe.labels.some((label) => label.toLowerCase().includes(searchQueryItem.toLowerCase())))
-                .filter((recipe) => !mealPlan.some((meal) => meal.id === recipe.id));
-        }, recipes);
-    }
-
-    const selectLabel = (label) => {
-        setSelectedLabels([...selectedLabels, label]);
+    const addLabelToSearchQuery = (label) => {
+        const newSearchQuery = searchQuery.trim().length > 0 ? `${searchQuery} ${label} ` : label;
+        setSearchQuery(newSearchQuery);
     }
 
     return (
@@ -50,28 +34,19 @@ const App = () => {
             <div className="flex justify-between">
                 <div className='flex-grow px-8'>
                     <Header
-                        recipes={recipes}
-                        handleShowAddRecipeModal={() => setShowModal(true)}
+                        handleShowAddRecipeModal={() => setShowAddRecipeModal(true)}
                         handleShowMealPlanSlider={() => setShowMealPlan(true)}
                     />
-                    <Search onSearchChange={handleOnSearchChange} />
-                    <Labels labels={availableLabels} />
+                    <Search query={searchQuery} handleQueryOnChange={setSearchQuery} />
+                    <Labels labels={availableLabels} handleLabelOnClick={addLabelToSearchQuery} />
                     <RecipeBook
-                        handleAddLabelToSearch={selectLabel}
-                        recipes={filterRecipesBySearchQuery()}
-                        handleUpdateRating={(id, rating) => {
-                            const updatedRecipes = recipes.map((recipe) =>
-                                recipe.id === id ? {...recipe, rating} : recipe
-                            );
-                            setRecipes(updatedRecipes);
-                        }}
+                        recipesFilter={searchQuery}
+                        meals={mealPlan}
+                        handleAddLabelToSearch={addLabelToSearchQuery}
                         handleMealPlan={(recipe) => {
                             if (mealPlan.length < 5) {
                                 setMealPlan([...mealPlan, recipe]);
                             }
-                        }}
-                        handleDeleteRecipe={(id) => {
-                            setRecipes(recipes.filter((recipe) => recipe.id !== id));
                         }}
                     />
                 </div>
@@ -83,13 +58,13 @@ const App = () => {
                 removeMealFromPlan={(id) => setMealPlan(mealPlan.filter((meal) => meal.id !== id))}
                 handleRequestClosed={() => setShowMealPlan(false)} />
 
-            <AddRecipe isOpen={showModal}
+            <AddRecipe isOpen={showAddRecipeModal}
                        handleAddRecipe={(recipe) => {
                            recipe.id = nanoid();
                            setRecipes([...recipes, recipe]);
-                           setShowModal(false);
+                           setShowAddRecipeModal(false);
                        }}
-                       handleCancelRecipe={() => setShowModal(false)} />
+                       handleCancelRecipe={() => setShowAddRecipeModal(false)} />
         </>
     );
 }

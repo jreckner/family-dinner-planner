@@ -2,9 +2,11 @@ import {FaDownload, FaPlus, FaShoppingCart} from "react-icons/fa";
 import RoleRequired from "../RoleRequired.js";
 import {exportToJson } from "../../lib/helpers.js";
 import GoogleLoginProfile from "./GoogleLoginProfile.jsx";
+import {useRecipesContext} from "../../providers/RecipesProvider.jsx";
 
 /* eslint react/prop-types: 0 */
-const Header = ({recipes, handleShowAddRecipeModal, handleShowMealPlanSlider}) => {
+const Header = ({handleShowAddRecipeModal, handleShowMealPlanSlider}) => {
+    const { recipes } = useRecipesContext();
 
     return (
         <div className='flex justify-between items-center'>
