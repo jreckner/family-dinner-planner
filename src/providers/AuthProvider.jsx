@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
 
     const login = (response) => {
         const decodedUser = jwtDecode(response.credential);
-        console.log(decodedUser);
         if (decodedUser.email.includes("reckner")) roles.push("admin");
         setUser(decodedUser);
     };
@@ -31,4 +30,4 @@ export const AuthProvider = ({ children }) => {
     );
 };
 
-export const useAuth = () => useContext(AuthContext);
+export const useAuthContext = () => useContext(AuthContext);

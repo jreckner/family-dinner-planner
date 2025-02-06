@@ -1,8 +1,8 @@
 /* eslint react/prop-types: 0 */
-import { useAuth } from "../providers/AuthProvider.jsx";
+import { useAuthContext } from "../providers/AuthProvider.jsx";
 
 const RoleRequired = ({ requiredRoles, children }) => {
-    const { roles } = useAuth();
+    const { roles } = useAuthContext();
 
     if (requiredRoles.filter(role => roles.includes(role)).length > 0) {
         return children;

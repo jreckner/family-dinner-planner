@@ -1,0 +1,1 @@
+export const DEFAULT_RECIPE_IMAGE = 'https://thumbs.dreamstime.com/b/empty-plate-left-dinner-view-above-33349397.jpg';
